@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>¿Quieres jugar?</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+    }
+
+    .btn-container {
+      position: relative;
+      width: 300px;
+      height: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+    }
+
+    button {
+      padding: 12px 25px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+      transition: transform 0.1s;
+    }
+
+    #btn-si {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    #btn-no {
+      background-color: #f44336;
+      color: white;
+      position: absolute;
+    }
+
+    #resultado {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    img {
+      max-width: 300px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="quiz">
+    <h1>¿Quieres jugar?</h1>
+    <div class="btn-container">
+      <button id="btn-si" onclick="aceptar()">Sí</button>
+      <button id="btn-no" onmouseover="moverBoton()" onclick="moverBoton()">No</button>
+    </div>
+  </div>
+
+  <div id="resultado">
+    <h1>yay, jugemos! 🎉</h1>
+    <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Z2dTB3eG5neGNvYms4bTZ6c3Ixbzh0bXUyeGNxb3Eybms2ZnE3ZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/artj92V8o75VPL7AeQ/giphy.gif" alt="celebracion">
+  </div>
+
+  <script>
+    function moverBoton() {
+      const btnNo = document.getElementById('btn-no');
+      
+      // Obtener dimensiones del área visible de la ventana
+      const maxX = window.innerWidth - btnNo.offsetWidth;
+      const maxY = window.innerHeight - btnNo.offsetHeight;
+
+      // Calcular posiciones aleatorias dentro del área
+      const randomX = Math.floor(Math.random() * maxX);
+      const randomY = Math.floor(Math.random() * maxY);
+
+      // Cambiar a posicion fija si aún no lo está
+      btnNo.style.position = 'fixed';
+      btnNo.style.left = `${randomX}px`;
+      btnNo.style.top = `${randomY}px`;
+    }
+
+    function aceptar() {
+      document.getElementById('quiz').style.display = 'none';
+      document.getElementById('resultado').style.display = 'flex';
+    }
+  </script>
+
+</body>
+</html>
